@@ -1,6 +1,7 @@
 package com.tianyu.login_mvp_extract.base;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,4 +44,8 @@ public abstract class BaseActivity<P extends BasePresenter, V extends BaseView> 
     }
 
     protected abstract int getLayoutId();
+
+    public void toast(String toastMsg){
+        Toast.makeText(this, toastMsg, Toast.LENGTH_SHORT).show();
+    }
 }

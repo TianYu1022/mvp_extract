@@ -61,7 +61,14 @@ public class MainActivity extends BaseActivity<ImpLoginPresenter, LoginView> imp
                 mPresenter.login(name,pwd);
                 break;
             case R.id.btn_register:
+                toast("注册");
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 }

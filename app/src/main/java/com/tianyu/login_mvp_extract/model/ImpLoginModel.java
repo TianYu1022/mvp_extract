@@ -9,13 +9,14 @@ import com.tianyu.login_mvp_extract.utils.HttpManager;
 import com.tianyu.login_mvp_extract.utils.RxUtil;
 
 public class ImpLoginModel extends BaseModel implements LoginModel {
+
     @Override
     public void login(String username, String password, LoginCallback loginCallback) {
         HttpManager.getHttpManager()
                 .getApiService(ApiService.baseLoginUrl, ApiService.class)//获取接口服务对象
                 .login(username, password)
                 .compose(RxUtil.rxObservableTransformer())//RxUtil 切换线程
-                .subscribe(new BaseObserver<LoginBean>() {
+                .subscribe(new BaseObserver<LoginBean>(this) {
                     @Override
                     public void onSuccess(LoginBean loginBean) {
                         loginCallback.onSuccess(loginBean);

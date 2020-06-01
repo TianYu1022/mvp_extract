@@ -11,15 +11,26 @@ import io.reactivex.disposables.Disposable;
  * @param <T>
  */
 public abstract class BaseObserver<T> implements Observer<T> {
+    private Disposable mDisposable;
+    private BaseModel mModel;
+
+    public BaseObserver(BaseModel mModel) {
+        this.mModel = mModel;
+    }
+
     @Override
     public void onSubscribe(Disposable d) {
-        // TODO: 2020/6/1 
+        mDisposable = d;
+        mModel.addModel(mDisposable);
         Log.e("TAG", "onSubscribe: " + "订阅成功");
     }
 
     @Override
     public void onNext(T t) {
         onSuccess(t);
+        //断开订阅
+        mDisposable.dispose();
+        mModel.compositeDisposable.remove(mDisposable);
     }
 
     @Override
