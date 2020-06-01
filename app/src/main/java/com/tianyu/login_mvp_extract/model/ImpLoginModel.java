@@ -19,7 +19,12 @@ public class ImpLoginModel extends BaseModel implements LoginModel {
                 .subscribe(new BaseObserver<LoginBean>(this) {
                     @Override
                     public void onSuccess(LoginBean loginBean) {
-                        loginCallback.onSuccess(loginBean);
+                        int errorCode = loginBean.getErrorCode();
+                        if (errorCode == 0) {
+                            loginCallback.onSuccess(loginBean);
+                        } else {
+                            loginCallback.onFail(loginBean.getErrorMsg());
+                        }
                     }
 
                     @Override

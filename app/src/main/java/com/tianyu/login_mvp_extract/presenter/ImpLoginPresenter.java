@@ -16,10 +16,12 @@ class ImpLoginPresenter extends BasePresenter implements LoginPresenter, LoginCa
     public void login(String username, String password) {
         if (TextUtils.isEmpty(username)) {
             mView.onFail("姓名不能为空");
+            return;
         }
 
         if (TextUtils.isEmpty(password)) {
             mView.onFail("密码不能为空");
+            return;
         }
 
         model.login(username, password, this);

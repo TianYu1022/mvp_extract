@@ -15,7 +15,7 @@ public abstract class BaseModel {
 
     public void addModel(Disposable disposable) {
         if (compositeDisposable == null) {
-            compositeDisposable = new CompositeDisposable(disposable);
+            compositeDisposable = new CompositeDisposable();
         }
         compositeDisposable.add(disposable);
     }
