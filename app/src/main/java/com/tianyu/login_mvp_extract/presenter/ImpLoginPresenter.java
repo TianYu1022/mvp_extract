@@ -28,6 +28,7 @@ class ImpLoginPresenter extends BasePresenter implements LoginPresenter, LoginCa
     @Override
     protected void initModel() {
         model = new ImpLoginModel();
+        addModel(model);
     }
 
     @Override

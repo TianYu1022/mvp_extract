@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity<ImpLoginPresenter, LoginView> imp
             case R.id.btn_login:
                 String name = etName.getText().toString().trim();
                 String pwd = etPass.getText().toString().trim();
-                mPresenter.login(name,pwd);
+                mPresenter.login(name, pwd);
                 break;
             case R.id.btn_register:
                 toast("注册");
@@ -69,6 +69,7 @@ public class MainActivity extends BaseActivity<ImpLoginPresenter, LoginView> imp
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //打断 p 层和  v 层的关系
         mPresenter.onDestroy();
     }
 }
